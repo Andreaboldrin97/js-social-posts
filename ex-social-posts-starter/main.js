@@ -157,10 +157,12 @@ let likeButtons = document.querySelectorAll('.like-button');
         }else{
             likeButtons[i].classList.remove('like-button--liked');
         }
-        return element.is_liked;
+        
    });
+  
     liked ( likeButtons , i ,)
  };
+
 
 
 function liked (likeBtn , i , like){
