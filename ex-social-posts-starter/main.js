@@ -148,19 +148,21 @@ posts.forEach((element , index ) => {
 
 
 let likeButtons = document.querySelectorAll('.like-button');
-
+let checkLike ;
 
  for( let i = 0 ; i < likeButtons.length ; i++){
     let likes = posts.filter((element) => {
         if(element.is_liked == true){
             likeButtons[i].classList.add('like-button--liked');
+            checkLike = false
         }else{
             likeButtons[i].classList.remove('like-button--liked');
+            checkLike = true
         }
-        
+        return element.is_liked;
    });
   
-    liked ( likeButtons , i ,)
+    liked ( likeButtons , i , checkLike)
  };
 
 
