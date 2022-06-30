@@ -145,14 +145,17 @@ posts.forEach((element , index ) => {
 
     
                     postContainer.append(post);
+ 
+            let likeButtons = document.querySelectorAll('.like-button');
+        
        
 });
 
 
 
 
-let likeButtons = document.querySelectorAll('.like-button');
-let checkLike ;
+
+let checkLike =  ;
 
  for( let i = 0 ; i < likeButtons.length ; i++){
 
@@ -160,15 +163,10 @@ let checkLike ;
  };
 
 
-
-function liked (likeBtn , i , like){
-    likeBtn[i].addEventListener('click', function(){
-        if (posts.ele == false){
-            likeBtn[i].classList.add('like-button--liked');
-            like = true;
-        }else{
-            likeBtn[i].classList.remove('like-button--liked');
-            like = false;
-        }
-        })
+ function addLike(addElementClass){
+    
+    addElementClass.add('like-button--liked')
+}
+function removeLike( removeElementClass){
+    removeElementClass.classList.remove('like-button--liked')
 }
