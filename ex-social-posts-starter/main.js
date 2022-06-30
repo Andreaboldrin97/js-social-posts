@@ -131,7 +131,7 @@ posts.forEach((element , index ) => {
                         <div class="post__footer">
                             <div class="likes js-likes">
                                 <div class="likes__cta">
-                                    <a class="like-button  js-like-button ${element.is_liked}" href="#" data-postid="1">
+                                    <a class="like-button  js-like-button ${element.is_liked}"  data-postid="1">
                                         <i class="like-button__icon fas fa-thumbs-up " aria-hidden="true"></i>
                                         <span class="like-button__label">Mi Piace</span>
                                     </a>
@@ -145,30 +145,34 @@ posts.forEach((element , index ) => {
 
     
                     postContainer.append(post);
- 
+      });
+
             let likeButtons = document.querySelectorAll('.like-button');
-            let likesContainer = document.getElementById(`${element.id}`)
-            console.log(likesContainer)
+            
             
                 for( let i = 0 ; i < likeButtons.length ; i++){
                        //? al click cambio il btn
                         likeButtons[i].addEventListener('click',function(){
-                            
-                        if(!element.is_liked){
+                        let likesContainer = document.getElementById(`${i +1}`)
+                        
+                        posts[i].is_liked = !posts[i].is_liked
+
+                        if(posts[i].is_liked){
                             addLike(likeButtons[i])
-                            likesContainer.innerHTML= ++ element.likes
+                            posts[i].likes++ ;
                         } else{
                             removeLike(likeButtons[i])
-                            likesContainer.innerHTML= -- element.likes
+                            posts[i].likes-- ;
                         } 
 
-                    element.is_liked = !element.is_liked
+                        likesContainer.innerHTML= posts[i].likes ;
+                    
                })
         
                 }
          
        
-});
+
 
 
 
