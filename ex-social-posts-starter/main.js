@@ -109,6 +109,10 @@ posts.forEach((element , index ) => {
     let post = document.createElement('div');
     post.classList.add('post');
 
+    if(element.is_liked == true){
+        element.is_liked = 'like-button--liked';
+    }
+
     post.innerHTML =`<div class="post__header">
                             <div class="post-meta">
                                 <div class="post-meta__icon">
@@ -127,8 +131,8 @@ posts.forEach((element , index ) => {
                         <div class="post__footer">
                             <div class="likes js-likes">
                                 <div class="likes__cta">
-                                    <a class="like-button  js-like-button" href="#" data-postid="1">
-                                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                    <a class="like-button  js-like-button ${element.is_liked}" href="#" data-postid="1">
+                                        <i class="like-button__icon fas fa-thumbs-up " aria-hidden="true"></i>
                                         <span class="like-button__label">Mi Piace</span>
                                     </a>
                                 </div>
@@ -151,17 +155,7 @@ let likeButtons = document.querySelectorAll('.like-button');
 let checkLike ;
 
  for( let i = 0 ; i < likeButtons.length ; i++){
-    let likes = posts.filter((element) => {
-        if(element.is_liked == true){
-            likeButtons[i].classList.add('like-button--liked');
-            checkLike = false
-        }else{
-            likeButtons[i].classList.remove('like-button--liked');
-            checkLike = true
-        }
-        return element.is_liked;
-   });
-  
+
     liked ( likeButtons , i , checkLike)
  };
 
@@ -169,7 +163,7 @@ let checkLike ;
 
 function liked (likeBtn , i , like){
     likeBtn[i].addEventListener('click', function(){
-        if (like == false){
+        if (posts.ele == false){
             likeBtn[i].classList.add('like-button--liked');
             like = true;
         }else{
