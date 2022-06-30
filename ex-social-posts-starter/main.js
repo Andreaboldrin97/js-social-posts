@@ -137,7 +137,7 @@ posts.forEach((element , index ) => {
                                     </a>
                                 </div>
                                 <div class="likes__counter">
-                                    Piace a <b id="like-counter-1" class="js-likes-counter">${element.likes}</b> persone
+                                    Piace a <b id="${element.id}" class="js-likes-counter">${element.likes}</b> persone
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,26 @@ posts.forEach((element , index ) => {
                     postContainer.append(post);
  
             let likeButtons = document.querySelectorAll('.like-button');
+            let likesContainer = document.getElementById(`${element.id}`)
+            console.log(likesContainer)
+            
+                for( let i = 0 ; i < likeButtons.length ; i++){
+                       //? al click cambio il btn
+                        likeButtons[i].addEventListener('click',function(){
+                            
+                        if(!element.is_liked){
+                            addLike(likeButtons[i])
+                            likesContainer.innerHTML= ++ element.likes
+                        } else{
+                            removeLike(likeButtons[i])
+                            likesContainer.innerHTML= -- element.likes
+                        } 
+
+                    element.is_liked = !element.is_liked
+               })
         
+                }
+         
        
 });
 
@@ -155,17 +174,10 @@ posts.forEach((element , index ) => {
 
 
 
-let checkLike =  ;
 
- for( let i = 0 ; i < likeButtons.length ; i++){
-
-    liked ( likeButtons , i , checkLike)
- };
-
-
- function addLike(addElementClass){
-    
-    addElementClass.add('like-button--liked')
+//! btn color function
+ function addLike (addElementClass){
+    addElementClass.classList.add('like-button--liked')
 }
 function removeLike( removeElementClass){
     removeElementClass.classList.remove('like-button--liked')
