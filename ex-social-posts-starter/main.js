@@ -113,9 +113,13 @@ posts.forEach((element , index ) => {
         element.is_liked = 'like-button--liked';
     }
 
+    //! profile picture
+    let profilePicContainer = document.getElementById(`profile-${element.id}`);
+   
+
     post.innerHTML =`<div class="post__header">
                             <div class="post-meta">
-                                <div class="post-meta__icon">
+                                <div class="post-meta__icon"}>
                                     <img class="profile-pic" src="${element.author.image}" alt="${element.author.name}">
                                 </div>
                                 <div class="post-meta__data">
@@ -149,19 +153,25 @@ posts.forEach((element , index ) => {
 
             let likeButtons = document.querySelectorAll('.like-button');
             
-            
+            //? creo un ciclo for per recuperare tutti i btn
                 for( let i = 0 ; i < likeButtons.length ; i++){
                        //? al click cambio il btn
                         likeButtons[i].addEventListener('click',function(){
+                            // recupero con l'id likeContainer (essendo un numero lo posso inizializzare con i + 1)
                         let likesContainer = document.getElementById(`${i +1}`)
-                        
+
                         posts[i].is_liked = !posts[i].is_liked
 
+                        //* creo un if , dico che se l'elemento dell'array .is_liked è true
                         if(posts[i].is_liked){
+                            // funzione del cambio colore
                             addLike(likeButtons[i])
+                            //incremento l'elemento dell'array 
                             posts[i].likes++ ;
                         } else{
+                            // funzione del cambio colore
                             removeLike(likeButtons[i])
+                            //decremento l'elemento dell'array 
                             posts[i].likes-- ;
                         } 
 
